@@ -1,0 +1,7 @@
+.icon.is-rounded{
+    border-radius: 50%;
+}
+.icon.is-success{
+    background-color: #23d160;
+    color: #fff;
+}
