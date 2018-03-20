@@ -23,9 +23,9 @@ class FunctionController extends BaseController
 {
 	public function actionDaftar(Request $request){
         $verifikator = new Verifikator;
-        $verifikator->nama                  = 'Rio Ramadhan';
-        $verifikator->nomor_verifikator     = '111';
-        $verifikator->password              = Hash::make('weasx123');
+        $verifikator->nama                  = 'M FIkrie Ramadhan';
+        $verifikator->nomor_verifikator     = '180320001';
+        $verifikator->password              = Hash::make('180320001');
         $verifikator->save();
 
         Session::flash('success-msg', 'Akun Anda berhasil didaftarkan.');
