@@ -45,35 +45,35 @@
         <div class="columns">
             <div class="column has-text-centered" style="border: 1px solid #bbbbbb;">
                 <div class="content">
-                    Jumlah pelamar terdaftar
+                    Pelamar terdaftar
                     <br>
                     <b style="font-size: 46px;">{{$jumlah_pelamar}}</b>
                 </div>
             </div>
             <div class="column has-text-centered" style="border: 1px solid #bbbbbb;">
                 <div class="content">
-                    Jumlah Lamaran yang tersubmit
+                    Pelamar sudah submit
                     <br>
                     <b style="font-size: 46px;">{{$jumlah_berkas_tersubmit}}</b>
                 </div>
             </div>
             <div class="column has-text-centered" style="border: 1px solid #bbbbbb;">
                 <div class="content">
-                    Jumlah Lamaran yang sedang diverifikasi
+                    Pelamar sedang diverifikasi
                     <br>
                     <b style="font-size: 46px;">{{$jumlah_berkas_sedang_diverif}}</b>
                 </div>
             </div>
             <div class="column has-text-centered" style="border: 1px solid #bbbbbb;">
                 <div class="content">
-                    Jumlah Lamaran yang ditolak
+                    Pelamar ditolak
                     <br>
                     <b style="font-size: 46px;">{{$jumlah_berkas_tolak}}</b>
                 </div>
             </div>
             <div class="column has-text-centered" style="border: 1px solid #bbbbbb;">
                 <div class="content">
-                    Jumlah Lamaran yang lolos
+                    Pelamar lolos
                     <br>
                     <b style="font-size: 46px;">{{$jumlah_berkas_lolos}}</b>
                 </div>
