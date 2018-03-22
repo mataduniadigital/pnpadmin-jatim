@@ -64,28 +64,11 @@ class LayoutController extends BaseController
             $pelamar = Pelamar::find($berkas_lamaran->id_pelamar);
             $verifikasi_berkas_lamaran = VerifikasiBerkasLamaran::where('id_berkas_lamaran', $berkas_lamaran->id_berkas_lamaran)->first();
 
-            $tindakan = 0;
-            if(!empty($verifikasi_berkas_lamaran))
-            if(!empty($verifikasi_berkas_lamaran->file_foto))
-            if(!empty($verifikasi_berkas_lamaran->file_ktp))
-            if(!empty($verifikasi_berkas_lamaran->file_npwp))
-            if(!empty($verifikasi_berkas_lamaran->file_keterangan_sehat))
-            if(!empty($verifikasi_berkas_lamaran->file_surat_lamaran))
-            if(!empty($verifikasi_berkas_lamaran->file_cv))
-            if(!empty($verifikasi_berkas_lamaran->file_ijazah))
-            if(!empty($verifikasi_berkas_lamaran->file_transkrip))
-            if(!empty($verifikasi_berkas_lamaran->file_skck))
-            if(!empty($verifikasi_berkas_lamaran->file_bebas_narkoba))
-            if(!empty($verifikasi_berkas_lamaran->file_bukan_pns))
-            if(!empty($verifikasi_berkas_lamaran->file_summary))
-                $tindakan = 1;
-
             $data = array(
                 'pelamar' => $pelamar,
                 'berkas_lamaran' => $berkas_lamaran,
                 'penempatan' => Penempatan::find($berkas_lamaran->id_penempatan),
                 'verifikasi_berkas_lamaran' => $verifikasi_berkas_lamaran,
-                'tindakan' => $tindakan,
                 'list_jabatan_lamatan' => JabatanLamaran::get(),
                 'option_index_nilai_1' => OptionIndexNilai::where('tipe', 1)->get(),
                 'option_index_nilai_2' => OptionIndexNilai::where('tipe', 2)->get(),

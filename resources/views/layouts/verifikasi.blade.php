@@ -680,7 +680,6 @@
                     <span>Izinkan revisi berkas</span>
                 </a>
             </div>
-            @if(!empty($tindakan))
             <div class="control">
                 <a class="button is-link" href="{{url('finish-lamaran/'.$berkas_lamaran->id_berkas_lamaran.'/10')}}">
                     <span class="icon">
@@ -689,7 +688,6 @@
                     <span>Selesai Verifikasi</span>
                 </a>
             </div>
-            @endif
         </div>
     </div>
 </section>

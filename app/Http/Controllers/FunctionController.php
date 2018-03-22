@@ -159,19 +159,23 @@ class FunctionController extends BaseController
         $verifikator = Auth::user();
         $berkas_lamaran = BerkasLamaran::find($id);
         if($berkas_lamaran->id_verifikator == $verifikator->id_verifikator){
-            $verifikasi_berkas_lamaran = VerifikasiBerkasLamaran::where('id_berkas_lamaran', $berkas_lamaran->id_berkas_lamaran)->first();
+            if($verifikasi_berkas_lamaran = VerifikasiBerkasLamaran::where('id_berkas_lamaran', $berkas_lamaran->id_berkas_lamaran)->first()){
+                $berkas_lamaran->id_jabatan_lamaran = $input->jabatan_lamaran;
+                $berkas_lamaran->save();
+    
+                $verifikasi_berkas_lamaran->index_nilai_1 = $input->index_nilai_1;
+                $verifikasi_berkas_lamaran->index_nilai_2 = $input->index_nilai_2;
+                $verifikasi_berkas_lamaran->index_nilai_3 = $input->index_nilai_3;
+                $verifikasi_berkas_lamaran->index_nilai_4 = $input->index_nilai_4;
+                $verifikasi_berkas_lamaran->save();
+                
+                Session::flash('success-msg', 'Nilai sudah tersimpan ...');
+                return Redirect::back();
+            }else{
+                Session::flash('error-msg', 'Verifikasi dokumen terkait terlebih dahulu ...');
+                return Redirect::back();
+            }
             
-            $berkas_lamaran->id_jabatan_lamaran = $input->jabatan_lamaran;
-            $berkas_lamaran->save();
-
-            $verifikasi_berkas_lamaran->index_nilai_1 = $input->index_nilai_1;
-            $verifikasi_berkas_lamaran->index_nilai_2 = $input->index_nilai_2;
-            $verifikasi_berkas_lamaran->index_nilai_3 = $input->index_nilai_3;
-            $verifikasi_berkas_lamaran->index_nilai_4 = $input->index_nilai_4;
-            $verifikasi_berkas_lamaran->save();
-            
-            Session::flash('success-msg', 'Nilai sudah tersimpan ...');
-            return Redirect::back();
         }else{
             return Redirect::back();
         }
@@ -182,39 +186,12 @@ class FunctionController extends BaseController
         $berkas_lamaran = BerkasLamaran::find($id);
         if($berkas_lamaran->id_verifikator == $verifikator->id_verifikator){
             $verifikasi_berkas_lamaran = VerifikasiBerkasLamaran::where('id_berkas_lamaran', $berkas_lamaran->id_berkas_lamaran)->first();
+            
+            $berkas_lamaran->status = $action;
+            $berkas_lamaran->save();
 
-            $tindakan = 0;
-            if(!empty($verifikasi_berkas_lamaran))
-            if(!empty($verifikasi_berkas_lamaran->file_foto))
-            if(!empty($verifikasi_berkas_lamaran->file_ktp))
-            if(!empty($verifikasi_berkas_lamaran->file_npwp))
-            if(!empty($verifikasi_berkas_lamaran->file_keterangan_sehat))
-            if(!empty($verifikasi_berkas_lamaran->file_surat_lamaran))
-            if(!empty($verifikasi_berkas_lamaran->file_cv))
-            if(!empty($verifikasi_berkas_lamaran->file_ijazah))
-            if(!empty($verifikasi_berkas_lamaran->file_transkrip))
-            if(!empty($verifikasi_berkas_lamaran->file_skck))
-            if(!empty($verifikasi_berkas_lamaran->file_bebas_narkoba))
-            if(!empty($verifikasi_berkas_lamaran->file_bukan_pns))
-            if(!empty($verifikasi_berkas_lamaran->file_summary))
-                $tindakan = 1;
-
-            if($tindakan == 1){
-                $berkas_lamaran->status = $action;
-                $berkas_lamaran->save();
-
-                Session::flash('success-msg', 'Berkas sudah ditindaklanjuti ...');
-                return Redirect::to('verifikasi-saya');
-            }else{
-                if($action == 0){
-                    $berkas_lamaran->status = $action;
-                    $berkas_lamaran->save();
-    
-                    Session::flash('success-msg', 'Berkas sudah ditindaklanjuti ...');
-                    return Redirect::to('verifikasi-saya');
-                }
-                return Redirect::back();
-            }
+            Session::flash('success-msg', 'Berkas sudah ditindaklanjuti ...');
+            return Redirect::to('verifikasi-saya');
         }
     }
 
