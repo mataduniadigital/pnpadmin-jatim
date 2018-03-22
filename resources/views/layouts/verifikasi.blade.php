@@ -565,7 +565,6 @@
                     @endif
                 </div>
                 <hr>
-                @if(!empty($tindakan))
                 <form action="{{url('savenilai-verifikasi/'.$berkas_lamaran->id_berkas_lamaran)}}" method="POST">
                 {{csrf_field()}}
                 <div class="content">
@@ -667,7 +666,6 @@
                     </div>
                 </div>
                 </form>
-                @endif
             </div>
         </div>
     </div>

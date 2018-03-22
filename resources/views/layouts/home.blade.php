@@ -83,6 +83,22 @@
 </section>
 <section class="section">
     <div class="container">
+        <div class="content">
+            <h2>
+                <b>Hai, Saudara/i {{Auth::user()->nama}}</b>
+            </h2>
+            <p>Silakan Anda verifikasi dengan klik link berikut atau klik tombol verifikasi di bagian navigasi</p>
+            <a href="{{url('verifikasi-berkas')}}" class="button is-primary">
+                <span class="icon is-small">
+                    <i class="fa fa-check"></i>
+                </span>
+                <span>Verifikasi Berkas</span>
+            </a>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
         <table class="table" style="border: 1px solid #eeeeee">
             <thead>
                 <tr>
@@ -90,11 +106,17 @@
                         <abbr>No</abbr>
                     </th>
                     <th>Penempatan</th>
-                    <th>
-                        <abbr>Berkas belum terverifikasi</abbr>
+                    <th class="has-text-centered">
+                        <abbr>Berkas belum <br>terverifikasi</abbr>
                     </th>
-                    <th>
-                        <abbr>Berkas sudah terverifikasi</abbr>
+                    <th class="has-text-centered">
+                        <abbr>Berkas sudah <br>terverifikasi</abbr>
+                    </th>
+                    <th class="has-text-centered">
+                        <abbr>Terverif lamaran<br> KORFAS</abbr>
+                    </th>
+                    <th class="has-text-centered">
+                        <abbr>Terverif lamaran<br> TFL</abbr>
                     </th>
                 </tr>
             </thead>
@@ -153,22 +175,6 @@
                 </tr>
             </tfoot>
         </table>
-    </div>
-</section>
-<section class="section">
-    <div class="container">
-        <div class="content">
-            <h2>
-                <b>Hai, Saudara/i {{Auth::user()->nama}}</b>
-            </h2>
-            <p>Silakan Anda verifikasi dengan klik link berikut atau klik tombol verifikasi di bagian navigasi</p>
-            <a href="{{url('verifikasi-berkas')}}" class="button is-primary">
-                <span class="icon is-small">
-                    <i class="fa fa-check"></i>
-                </span>
-                <span>Verifikasi Berkas</span>
-            </a>
-        </div>
     </div>
 </section>
 @endif
