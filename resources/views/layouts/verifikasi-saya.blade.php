@@ -37,7 +37,7 @@
         }
     });
     
-    var url = '{{env('APP_ASSET', '')}}';
+    var url = '{{env('APP_URL', '')}}';
     var berkas_proses_table = $('#berkas_proses_table').DataTable({
         processing: true,
         serverSide: true,

@@ -62,7 +62,7 @@
                     </div>
                     @endif
                     <div class="control">
-                        <a href="{{asset($berkas_lamaran->file_foto)}}" target="_blank">
+                        <a href="{{env('APP_ASSET', '').$berkas_lamaran->file_foto}}" target="_blank">
                             <i>(Lihat upload)</i>
                         </a>
                     </div>
@@ -97,7 +97,7 @@
                     </div>
                     @endif
                     <div class="control">
-                        <a href="{{asset($berkas_lamaran->file_ktp)}}" target="_blank">
+                        <a href="{{env('APP_ASSET', '').$berkas_lamaran->file_ktp}}" target="_blank">
                             <i>(Lihat upload)</i>
                         </a>
                     </div>
@@ -132,7 +132,7 @@
                     </div>
                     @endif
                     <div class="control">
-                        <a href="{{asset($berkas_lamaran->file_npwp)}}" target="_blank">
+                        <a href="{{env('APP_ASSET', '').$berkas_lamaran->file_npwp}}" target="_blank">
                             <i>(Lihat upload)</i>
                         </a>
                     </div>
@@ -167,7 +167,7 @@
                     </div>
                     @endif
                     <div class="control">
-                        <a href="{{asset($berkas_lamaran->file_keterangan_sehat)}}" target="_blank">
+                        <a href="{{env('APP_ASSET', '').$berkas_lamaran->file_keterangan_sehat}}" target="_blank">
                             <i>(Lihat upload)</i>
                         </a>
                     </div>
@@ -202,7 +202,7 @@
                     </div>
                     @endif
                     <div class="control">
-                        <a href="{{asset($berkas_lamaran->file_surat_lamaran)}}" target="_blank">
+                        <a href="{{env('APP_ASSET', '').$berkas_lamaran->file_surat_lamaran}}" target="_blank">
                             <i>(Lihat upload)</i>
                         </a>
                     </div>
@@ -237,7 +237,7 @@
                     </div>
                     @endif
                     <div class="control">
-                        <a href="{{asset($berkas_lamaran->file_cv)}}" target="_blank">
+                        <a href="{{env('APP_ASSET', '').$berkas_lamaran->file_cv}}" target="_blank">
                             <i>(Lihat upload)</i>
                         </a>
                     </div>
@@ -272,7 +272,7 @@
                     </div>
                     @endif
                     <div class="control">
-                        <a href="{{asset($berkas_lamaran->file_ijazah)}}" target="_blank">
+                        <a href="{{env('APP_ASSET', '').$berkas_lamaran->file_ijazah}}" target="_blank">
                             <i>(Lihat upload)</i>
                         </a>
                     </div>
@@ -307,7 +307,7 @@
                     </div>
                     @endif
                     <div class="control">
-                        <a href="{{asset($berkas_lamaran->file_transkrip)}}" target="_blank">
+                        <a href="{{env('APP_ASSET', '').$berkas_lamaran->file_transkrip}}" target="_blank">
                             <i>(Lihat upload)</i>
                         </a>
                     </div>
@@ -342,7 +342,7 @@
                     </div>
                     @endif
                     <div class="control">
-                        <a href="{{asset($berkas_lamaran->file_skck)}}" target="_blank">
+                        <a href="{{env('APP_ASSET', '').$berkas_lamaran->file_skck}}" target="_blank">
                             <i>(Lihat upload)</i>
                         </a>
                     </div>
@@ -377,7 +377,7 @@
                     </div>
                     @endif
                     <div class="control">
-                        <a href="{{asset($berkas_lamaran->file_bebas_narkoba)}}" target="_blank">
+                        <a href="{{env('APP_ASSET', '').$berkas_lamaran->file_bebas_narkoba}}" target="_blank">
                             <i>(Lihat upload)</i>
                         </a>
                     </div>
@@ -412,7 +412,7 @@
                     </div>
                     @endif
                     <div class="control">
-                        <a href="{{asset($berkas_lamaran->file_keterangan_pengalaman)}}" target="_blank">
+                        <a href="{{env('APP_ASSET', '').$berkas_lamaran->file_keterangan_pengalaman}}" target="_blank">
                             <i>(Lihat upload)</i>
                         </a>
                     </div>
@@ -447,7 +447,7 @@
                     </div>
                     @endif
                     <div class="control">
-                        <a href="{{asset($berkas_lamaran->file_sertifikat)}}" target="_blank">
+                        <a href="{{env('APP_ASSET', '').$berkas_lamaran->file_sertifikat}}" target="_blank">
                             <i>(Lihat upload)</i>
                         </a>
                     </div>
@@ -488,7 +488,7 @@
                     </div>
                     @endif
                     <div class="control">
-                        <a href="{{asset($berkas_lamaran->file_bukan_pns)}}" target="_blank">
+                        <a href="{{env('APP_ASSET', '').$berkas_lamaran->file_bukan_pns}}" target="_blank">
                             <i>(Lihat upload)</i>
                         </a>
                     </div>
@@ -523,7 +523,7 @@
                     </div>
                     @endif
                     <div class="control">
-                        <a href="{{asset($berkas_lamaran->file_bpjs)}}" target="_blank">
+                        <a href="{{env('APP_ASSET', '').$berkas_lamaran->file_bpjs}}" target="_blank">
                             <i>(Lihat upload)</i>
                         </a>
                     </div>
@@ -558,7 +558,7 @@
                     </div>
                     @endif
                     <div class="control">
-                        <a href="{{asset($berkas_lamaran->file_summary)}}" target="_blank">
+                        <a href="{{env('APP_ASSET', '').$berkas_lamaran->file_summary}}" target="_blank">
                             <i>(Lihat upload)</i>
                         </a>
                     </div>
