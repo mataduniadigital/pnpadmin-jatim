@@ -18,7 +18,8 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Status</th>
-                    <th>Datetime</th>
+                    <th>Pengajuan Penempatan</th>
+                    <th>Tanggal Daftar</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -57,6 +58,7 @@
                     }
                 }
             },
+            { data: 'nama_penempatan', name: 'nama_penempatan' },
             { data: 'created_at', name: 'created_at' },
             { data: 'action', name: 'action', searchable: false, orderable: false, 
                 render: function(data) {

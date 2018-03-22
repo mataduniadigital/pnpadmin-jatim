@@ -17,7 +17,8 @@
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>Datetime</th>
+                    <th>Pengajuan Penempatan</th>
+                    <th>Tanggal Daftar</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -43,6 +44,7 @@
         columns: [
             { data: 'rownum', name: 'rownum', searchable: false, orderable: false},
             { data: 'nama_lengkap', name: 'nama_lengkap' },
+            { data: 'nama_penempatan', name: 'nama_penempatan' },
             { data: 'created_at', name: 'created_at' },
             { data: 'action', name: 'action', searchable: false, orderable: false, 
                 render: function(data) {

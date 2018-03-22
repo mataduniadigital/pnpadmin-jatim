@@ -81,6 +81,37 @@
         </div>
     </div>
 </section>
+<!-- <section class="section">
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <abbr>No</abbr>
+                    </th>
+                    <th>Penempatan</th>
+                    <th>
+                        <abbr>Berkas belum terverifikasi</abbr>
+                    </th>
+                    <th>
+                        <abbr>Berkas sudah terverifikasi</abbr>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>1</th>
+                    <td>
+                        <a href="https://en.wikipedia.org/wiki/Aston_Villa_F.C." title="Aston Villa F.C.">Aston Villa</a>
+                        <strong>(R)</strong>
+                    </td>
+                    <td class="has-text-centered">38</td>
+                    <td class="has-text-centered">38</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section> -->
 <section class="section">
     <div class="container">
         <div class="content">
