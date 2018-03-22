@@ -81,9 +81,9 @@
         </div>
     </div>
 </section>
-<!-- <section class="section">
+<section class="section">
     <div class="container">
-        <table class="table">
+        <table class="table" style="border: 1px solid #eeeeee">
             <thead>
                 <tr>
                     <th>
@@ -99,19 +99,62 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($list_penempatan as $no => $penempatan)
                 <tr>
-                    <th>1</th>
+                    <th>{{$no+1}}</th>
                     <td>
-                        <a href="https://en.wikipedia.org/wiki/Aston_Villa_F.C." title="Aston Villa F.C.">Aston Villa</a>
-                        <strong>(R)</strong>
+                        <b>{{$penempatan->nama_penempatan}}</b>
                     </td>
-                    <td class="has-text-centered">38</td>
-                    <td class="has-text-centered">38</td>
+                    @php
+                        $berkas_belum_verif = $jumlah_berkas_per_penempatan_belum_verif->filter(
+                            function ($item) use ($penempatan) {
+                                return $item->id_penempatan == $penempatan->id_penempatan;
+                            })->values();
+
+                        $berkas_sudah_verif = $jumlah_berkas_per_penempatan_sudah_verif->filter(
+                            function ($item) use ($penempatan) {
+                                return $item->id_penempatan == $penempatan->id_penempatan;
+                            })->values();
+                    @endphp
+                    @if(!empty($berkas_belum_verif[0]))
+                        @php
+                            $jumlah_belum_verif = $berkas_belum_verif[0]->jumlah;
+                        @endphp
+                    @else
+                        @php
+                            $jumlah_belum_verif = 0;
+                        @endphp
+                    @endif
+                    @if(!empty($berkas_sudah_verif[0]))
+                        @php
+                            $jumlah_sudah_verif = $berkas_sudah_verif[0]->jumlah;
+                        @endphp
+                    @else
+                        @php
+                            $jumlah_sudah_verif = 0;
+                        @endphp
+                    @endif
+                    
+                    <td class="has-text-centered">{{$jumlah_belum_verif}}</td>
+                    <td class="has-text-centered">{{$jumlah_sudah_verif}}</td>
                 </tr>
+                @endforeach
             </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th class="has-text-centered">
+                        <abbr>{{$jumlah_berkas_tersubmit}}</abbr>
+                    </th>
+                    <th class="has-text-centered">
+                        <abbr>{{$jumlah_berkas_verif}}</abbr>
+                    </th>
+                </tr>
+            </tfoot>
         </table>
     </div>
-</section> -->
+</section>
 <section class="section">
     <div class="container">
         <div class="content">

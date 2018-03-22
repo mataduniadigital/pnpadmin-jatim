@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Redirect;
 
 use Auth;
+use DB;
 use Excel;
 
 use App\Models\Pelamar;
@@ -26,13 +27,28 @@ class LayoutController extends BaseController
         $jumlah_berkas_sedang_diverif = BerkasLamaran::where('status', 1)->whereNotNull('id_verifikator')->get()->count();
         $jumlah_berkas_verif = BerkasLamaran::where('status', 10)->get()->count();
         $jumlah_berkas_lolos = BerkasLamaran::where('status', 11)->get()->count();
+        $jumlah_berkas_per_penempatan_belum_verif = BerkasLamaran::select('penempatan.id_penempatan', 'nama_penempatan', DB::raw('count(berkas_lamaran.id_penempatan) as jumlah'))
+                                                        ->join('penempatan', 'penempatan.id_penempatan', '=', 'berkas_lamaran.id_penempatan')
+                                                        ->where('status', 1)
+                                                        ->groupBy('penempatan.id_penempatan', 'penempatan.nama_penempatan')
+                                                        ->orderBy('penempatan.id_penempatan')
+                                                        ->get();
+        $jumlah_berkas_per_penempatan_sudah_verif = BerkasLamaran::select('penempatan.id_penempatan', 'nama_penempatan', DB::raw('count(berkas_lamaran.id_penempatan) as jumlah'))
+                                                        ->join('penempatan', 'penempatan.id_penempatan', '=', 'berkas_lamaran.id_penempatan')
+                                                        ->where('status', 10)
+                                                        ->groupBy('penempatan.id_penempatan', 'penempatan.nama_penempatan')
+                                                        ->orderBy('penempatan.id_penempatan')
+                                                        ->get();
 
         $data = array(
             'jumlah_pelamar' => $jumlah_pelamar,
             'jumlah_berkas_tersubmit' => $jumlah_berkas_tersubmit,
             'jumlah_berkas_sedang_diverif' => $jumlah_berkas_sedang_diverif,
             'jumlah_berkas_verif' => $jumlah_berkas_verif,
-            'jumlah_berkas_lolos' => $jumlah_berkas_lolos
+            'jumlah_berkas_lolos' => $jumlah_berkas_lolos,
+            'list_penempatan' => Penempatan::get(),
+            'jumlah_berkas_per_penempatan_belum_verif' => $jumlah_berkas_per_penempatan_belum_verif,
+            'jumlah_berkas_per_penempatan_sudah_verif' => $jumlah_berkas_per_penempatan_sudah_verif
         );
         return view('layouts/home', $data);
     }
