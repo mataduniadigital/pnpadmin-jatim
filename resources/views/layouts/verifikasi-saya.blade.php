@@ -51,9 +51,9 @@
                     }else if(data == 1){
                         return '<span class="tag is-warning">Dalam proses</span>';
                     }else if(data == 10){
-                        return '<span class="tag is-success">Sudah diverifikasi</span><span class="tag is-link">Lolos</span>';
+                        return '<span class="tag is-success">Sudah diverifikasi</span>';
                     }else if(data == 11){
-                        return '<span class="tag is-success">Sudah diverifikasi</span><span class="tag is-danger">Tolak</span>';
+                        return '<span class="tag is-success">Sudah diverifikasi</span><span class="tag is-link">Lolos</span>';
                     }
                 }
             },

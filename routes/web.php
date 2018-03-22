@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('verifikasi/{id}', ['uses' => 'LayoutController@indexVerifikasi']);
     Route::get('verif-dokumen/{id}/{tipe}', ['uses' => 'FunctionController@actionVerifDokumen']);
     Route::get('finish-lamaran/{id}/{action}', ['uses' => 'FunctionController@actionFinishBerkas']);
+    Route::post('savenilai-verifikasi/{id}', ['uses' => 'FunctionController@actionSaveNilai']);
     
     Route::group(['prefix' => 'datalist'], function(){
         Route::get('berkas-not-verif', ['uses' => 'DatalistController@berkasNotVerif']);

@@ -13,6 +13,8 @@ use App\Models\Pelamar;
 use App\Models\BerkasLamaran;
 use App\Models\VerifikasiBerkasLamaran;
 use App\Models\Penempatan;
+use App\Models\JabatanLamaran;
+use App\Models\OptionIndexNilai;
 
 use Yajra\DataTables\Facades\DataTables;
 
@@ -22,14 +24,14 @@ class LayoutController extends BaseController
         $jumlah_pelamar = Pelamar::get()->count();
         $jumlah_berkas_tersubmit = BerkasLamaran::where('status', 1)->get()->count();
         $jumlah_berkas_sedang_diverif = BerkasLamaran::where('status', 1)->whereNotNull('id_verifikator')->get()->count();
-        $jumlah_berkas_tolak = BerkasLamaran::where('status', 11)->get()->count();
-        $jumlah_berkas_lolos = BerkasLamaran::where('status', 10)->get()->count();
+        $jumlah_berkas_verif = BerkasLamaran::where('status', 10)->get()->count();
+        $jumlah_berkas_lolos = BerkasLamaran::where('status', 11)->get()->count();
 
         $data = array(
             'jumlah_pelamar' => $jumlah_pelamar,
             'jumlah_berkas_tersubmit' => $jumlah_berkas_tersubmit,
             'jumlah_berkas_sedang_diverif' => $jumlah_berkas_sedang_diverif,
-            'jumlah_berkas_tolak' => $jumlah_berkas_tolak,
+            'jumlah_berkas_verif' => $jumlah_berkas_verif,
             'jumlah_berkas_lolos' => $jumlah_berkas_lolos
         );
         return view('layouts/home', $data);
@@ -67,7 +69,12 @@ class LayoutController extends BaseController
                 'berkas_lamaran' => $berkas_lamaran,
                 'penempatan' => Penempatan::find($berkas_lamaran->id_penempatan),
                 'verifikasi_berkas_lamaran' => $verifikasi_berkas_lamaran,
-                'tindakan' => $tindakan
+                'tindakan' => $tindakan,
+                'list_jabatan_lamatan' => JabatanLamaran::get(),
+                'option_index_nilai_1' => OptionIndexNilai::where('tipe', 1)->get(),
+                'option_index_nilai_2' => OptionIndexNilai::where('tipe', 2)->get(),
+                'option_index_nilai_3' => OptionIndexNilai::where('tipe', 3)->get(),
+                'option_index_nilai_4' => OptionIndexNilai::where('tipe', 4)->get()
             );
             return view('layouts/verifikasi', $data);
         }else{

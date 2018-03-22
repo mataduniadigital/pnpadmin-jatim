@@ -22,6 +22,7 @@ class BerkasLamaran extends Model
         'id_pelamar',
         'id_verifikator',
         'id_penempatan',
+        'id_jabatan_lamaran',
         'status',
         'file_foto',
         'file_ktp',

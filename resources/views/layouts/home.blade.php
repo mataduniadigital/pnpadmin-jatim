@@ -66,9 +66,9 @@
             </div>
             <div class="column has-text-centered" style="border: 1px solid #bbbbbb;">
                 <div class="content">
-                    Pelamar ditolak
+                    Pelamar sudah diverifikasi
                     <br>
-                    <b style="font-size: 46px;">{{$jumlah_berkas_tolak}}</b>
+                    <b style="font-size: 46px;">{{$jumlah_berkas_verif}}</b>
                 </div>
             </div>
             <div class="column has-text-centered" style="border: 1px solid #bbbbbb;">

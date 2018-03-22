@@ -565,9 +565,113 @@
                     @endif
                 </div>
                 <hr>
+                @if(!empty($tindakan))
+                <form action="{{url('savenilai-verifikasi/'.$berkas_lamaran->id_berkas_lamaran)}}" method="POST">
+                {{csrf_field()}}
+                <div class="content">
+                    <h2>Bagian di bawah ini silakan diisi oleh verifikator</h2>
+                </div>
+                <div class="field">
+                    <label class="label">Jabatan yang dilamar</label>
+                    <div class="control">
+                        <div class="select">
+                            <select name="jabatan_lamaran" required>
+                                <option value="">Pilih satu jabatan yang dilamar pelamar</option>
+                                @foreach($list_jabatan_lamatan as $jabatan_lamatan)
+                                @if($berkas_lamaran->id_jabatan_lamaran == $jabatan_lamatan->id_jabatan_lamaran)
+                                <option value="{{$jabatan_lamatan->id_jabatan_lamaran}}" selected>{{$jabatan_lamatan->nama}}</option>
+                                @else
+                                <option value="{{$jabatan_lamatan->id_jabatan_lamaran}}">{{$jabatan_lamatan->nama}}</option>
+                                @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">1. Nilai jenjang pendidikan formal</label>
+                    <div class="control">
+                        <div class="select">
+                            <select name="index_nilai_1" required>
+                                <option value="">Pilih satu opsi</option>
+                                @foreach($option_index_nilai_1 as $option)
+                                @if(!empty($verifikasi_berkas_lamaran) && $verifikasi_berkas_lamaran->index_nilai_1 == $option->id_option_index_nilai)
+                                <option value="{{$option->id_option_index_nilai}}" selected>{{$option->text}}</option>
+                                @else
+                                <option value="{{$option->id_option_index_nilai}}">{{$option->text}}</option>
+                                @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">2. Pendidikan Tambahan ketrampilan / kursus</label>
+                    <div class="control">
+                        <div class="select">
+                            <select name="index_nilai_2" required>
+                                <option value="">Pilih satu opsi</option>
+                                @foreach($option_index_nilai_2 as $option)
+                                @if(!empty($verifikasi_berkas_lamaran) && $verifikasi_berkas_lamaran->index_nilai_2 == $option->id_option_index_nilai)
+                                <option value="{{$option->id_option_index_nilai}}" selected>{{$option->text}}</option>
+                                @else
+                                <option value="{{$option->id_option_index_nilai}}">{{$option->text}}</option>
+                                @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">3. Pernah melakukan pendampingan/pemberdayaan program (seperti PNPM Mandiri, kegiatan pemberdayaan, Program APBD, dan CSR)</label>
+                    <div class="control">
+                        <div class="select">
+                            <select name="index_nilai_3" required>
+                                <option value="">Pilih satu opsi</option>
+                                @foreach($option_index_nilai_3 as $option)
+                                @if(!empty($verifikasi_berkas_lamaran) && $verifikasi_berkas_lamaran->index_nilai_3 == $option->id_option_index_nilai)
+                                <option value="{{$option->id_option_index_nilai}}" selected>{{$option->text}}</option>
+                                @else
+                                <option value="{{$option->id_option_index_nilai}}">{{$option->text}}</option>
+                                @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">4. jumlah masyarakat yang didampingi dalam sekali kegiatan</label>
+                    <div class="control">
+                        <div class="select">
+                            <select name="index_nilai_4" required>
+                                <option value="">Pilih satu opsi</option>
+                                @foreach($option_index_nilai_4 as $option)
+                                @if(!empty($verifikasi_berkas_lamaran) && $verifikasi_berkas_lamaran->index_nilai_4 == $option->id_option_index_nilai)
+                                <option value="{{$option->id_option_index_nilai}}" selected>{{$option->text}}</option>
+                                @else
+                                <option value="{{$option->id_option_index_nilai}}">{{$option->text}}</option>
+                                @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-grouped is-grouped-right">
+                    <div class="control">
+                        <button class="button is-primary">
+                            <span class="icon">
+                                <i class="fa fa-save"></i>
+                            </span>
+                            <span>Save Nilai</span>
+                        </button>
+                    </div>
+                </div>
+                </form>
+                @endif
             </div>
         </div>
     </div>
+    <hr>
     <div class="container">
         <div class="field is-grouped is-grouped-right">
             <div class="control">
@@ -584,15 +688,7 @@
                     <span class="icon">
                         <i class="fa fa-check"></i>
                     </span>
-                    <span>Lolos</span>
-                </a>
-            </div>
-            <div class="control">
-                <a class="button is-danger" href="{{url('finish-lamaran/'.$berkas_lamaran->id_berkas_lamaran.'/11')}}">
-                    <span class="icon">
-                        <i class="fa fa-close"></i>
-                    </span>
-                    <span>Tolak</span>
+                    <span>Selesai Verifikasi</span>
                 </a>
             </div>
             @endif

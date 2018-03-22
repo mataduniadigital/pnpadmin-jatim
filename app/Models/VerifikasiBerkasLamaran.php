@@ -34,7 +34,11 @@ class VerifikasiBerkasLamaran extends Model
         'file_sertifikat',
         'file_bukan_pns',
         'file_bpjs',
-        'file_summary'
+        'file_summary',
+        'index_nilai_1',
+        'index_nilai_2',
+        'index_nilai_3',
+        'index_nilai_4'
     ];
 
     protected $guarded = [];

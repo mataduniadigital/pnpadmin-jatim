@@ -16,6 +16,8 @@ use App\Models\Pelamar;
 use App\Models\BerkasLamaran;
 use App\Models\Verifikator;
 use App\Models\VerifikasiBerkasLamaran;
+use App\Models\JabatanLamaran;
+use App\Models\OptionIndexNilai;
 
 use Yajra\DataTables\Facades\DataTables;
 
@@ -147,6 +149,31 @@ class FunctionController extends BaseController
             }
         }else{
             Session::flash('error-msg', 'Ketik kembali kolom re-password sama dengan kolom password baru Anda.');
+            return Redirect::back();
+        }
+    }
+
+    public function actionSaveNilai(Request $request, $id){
+        $input = (object) $request->input();
+
+        $verifikator = Auth::user();
+        $berkas_lamaran = BerkasLamaran::find($id);
+        if($berkas_lamaran->id_verifikator == $verifikator->id_verifikator){
+            $verifikasi_berkas_lamaran = VerifikasiBerkasLamaran::where('id_berkas_lamaran', $berkas_lamaran->id_berkas_lamaran)->first();
+            
+            dd($verifikasi_berkas_lamaran);
+            $berkas_lamaran->id_jabatan_lamaran = $input->jabatan_lamaran;
+            $berkas_lamaran->save();
+
+            $verifikasi_berkas_lamaran->index_nilai_1 = $input->index_nilai_1;
+            $verifikasi_berkas_lamaran->index_nilai_2 = $input->index_nilai_2;
+            $verifikasi_berkas_lamaran->index_nilai_3 = $input->index_nilai_3;
+            $verifikasi_berkas_lamaran->index_nilai_4 = $input->index_nilai_4;
+            $verifikasi_berkas_lamaran->save();
+            
+            Session::flash('success-msg', 'Nilai sudah tersimpan ...');
+            return Redirect::back();
+        }else{
             return Redirect::back();
         }
     }
