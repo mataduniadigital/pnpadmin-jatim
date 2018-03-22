@@ -120,6 +120,10 @@
                     </th>
                 </tr>
             </thead>
+            @php
+                $jumlah_berkas_korfas = 0;
+                $jumlah_berkas_tfl = 0;
+            @endphp
             <tbody>
                 @foreach($list_penempatan as $no => $penempatan)
                 <tr>
@@ -137,6 +141,12 @@
                             function ($item) use ($penempatan) {
                                 return $item->id_penempatan == $penempatan->id_penempatan;
                             })->values();
+
+                        $berkas_korfas = \App\Models\BerkasLamaran::where(['id_penempatan' => $penempatan->id_penempatan, 'status' => 10, 'id_jabatan_lamaran' => 1])->get()->count();
+                        $jumlah_berkas_korfas = $jumlah_berkas_korfas + $berkas_korfas;
+
+                        $berkas_tfl = \App\Models\BerkasLamaran::where(['id_penempatan' => $penempatan->id_penempatan, 'status' => 10, 'id_jabatan_lamaran' => 2])->get()->count();
+                        $jumlah_berkas_tfl = $jumlah_berkas_tfl + $berkas_tfl;
                     @endphp
                     @if(!empty($berkas_belum_verif[0]))
                         @php
@@ -159,8 +169,8 @@
                     
                     <td class="has-text-centered">{{$jumlah_belum_verif}}</td>
                     <td class="has-text-centered">{{$jumlah_sudah_verif}}</td>
-                    <td class="has-text-centered">{{\App\Models\BerkasLamaran::where(['id_penempatan' => $penempatan->id_penempatan, 'status' => 10, 'id_jabatan_lamaran' => 1])->get()->count()}}</td>
-                    <td class="has-text-centered">{{\App\Models\BerkasLamaran::where(['id_penempatan' => $penempatan->id_penempatan, 'status' => 10, 'id_jabatan_lamaran' => 2])->get()->count()}}</td>
+                    <td class="has-text-centered">{{$berkas_korfas}}</td>
+                    <td class="has-text-centered">{{$berkas_tfl}}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -173,6 +183,12 @@
                     </th>
                     <th class="has-text-centered">
                         <abbr>{{$jumlah_berkas_verif}}</abbr>
+                    </th>
+                    <th class="has-text-centered">
+                        <abbr>{{$jumlah_berkas_korfas}}</abbr>
+                    </th>
+                    <th class="has-text-centered">
+                        <abbr>{{$jumlah_berkas_tfl}}</abbr>
                     </th>
                 </tr>
             </tfoot>
