@@ -64,6 +64,14 @@ class LayoutController extends BaseController
             $pelamar = Pelamar::find($berkas_lamaran->id_pelamar);
             $verifikasi_berkas_lamaran = VerifikasiBerkasLamaran::where('id_berkas_lamaran', $berkas_lamaran->id_berkas_lamaran)->first();
 
+            $tindakan = 0;
+            if(!empty($verifikasi_berkas_lamaran))
+                if(!empty($verifikasi_berkas_lamaran->index_nilai_1))
+                    if(!empty($verifikasi_berkas_lamaran->index_nilai_2))
+                        if(!empty($verifikasi_berkas_lamaran->index_nilai_3))
+                            if(!empty($verifikasi_berkas_lamaran->index_nilai_4))
+                                $tindakan = 1;
+    
             $data = array(
                 'pelamar' => $pelamar,
                 'berkas_lamaran' => $berkas_lamaran,
@@ -73,7 +81,8 @@ class LayoutController extends BaseController
                 'option_index_nilai_1' => OptionIndexNilai::where('tipe', 1)->get(),
                 'option_index_nilai_2' => OptionIndexNilai::where('tipe', 2)->get(),
                 'option_index_nilai_3' => OptionIndexNilai::where('tipe', 3)->get(),
-                'option_index_nilai_4' => OptionIndexNilai::where('tipe', 4)->get()
+                'option_index_nilai_4' => OptionIndexNilai::where('tipe', 4)->get(),
+                'tindakan' => $tindakan
             );
             return view('layouts/verifikasi', $data);
         }else{
