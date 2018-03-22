@@ -161,7 +161,6 @@ class FunctionController extends BaseController
         if($berkas_lamaran->id_verifikator == $verifikator->id_verifikator){
             $verifikasi_berkas_lamaran = VerifikasiBerkasLamaran::where('id_berkas_lamaran', $berkas_lamaran->id_berkas_lamaran)->first();
             
-            dd($verifikasi_berkas_lamaran);
             $berkas_lamaran->id_jabatan_lamaran = $input->jabatan_lamaran;
             $berkas_lamaran->save();
 

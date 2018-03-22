@@ -159,6 +159,8 @@
                     
                     <td class="has-text-centered">{{$jumlah_belum_verif}}</td>
                     <td class="has-text-centered">{{$jumlah_sudah_verif}}</td>
+                    <td class="has-text-centered">{{\App\Models\BerkasLamaran::where(['id_penempatan' => $penempatan->id_penempatan, 'status' => 10, 'id_jabatan_lamaran' => 1])->get()->count()}}</td>
+                    <td class="has-text-centered">{{\App\Models\BerkasLamaran::where(['id_penempatan' => $penempatan->id_penempatan, 'status' => 10, 'id_jabatan_lamaran' => 2])->get()->count()}}</td>
                 </tr>
                 @endforeach
             </tbody>
