@@ -94,6 +94,23 @@ class LayoutController extends BaseController
         return view('layouts/verifikasi-berkas');
     }
     
+	public function indexBerkasTerverifikas(Request $request){
+        $input = (object) $request->input();
+        if(empty($input->penempatan)){
+            $input->penempatan = 1;
+        }
+
+        if(empty($input->jabatan)){
+            $input->jabatan = 1;
+        }
+        $data = array(
+            'input' => $input,
+            'penempatan' => Penempatan::find($input->penempatan),
+            'jabatan_lamaran' => JabatanLamaran::find($input->jabatan)
+        );
+        return view('layouts/berkas-terverifikasi', $data);
+    }
+    
 	public function indexVerifikasiSaya(Request $request){
         return view('layouts/verifikasi-saya');
     }

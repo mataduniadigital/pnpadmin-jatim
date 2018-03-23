@@ -12,6 +12,7 @@ use Excel;
 
 use App\Models\BerkasLamaran;
 use App\Models\Penempatan;
+use App\Models\VerifikasiBerkasLamaran;
 
 use Yajra\DataTables\Facades\DataTables;
 
@@ -107,6 +108,79 @@ class DatalistController extends BaseController
                     return $data;
                 })
                 ->setTotalRecords($total_records->total)
+                ->make(true);
+    }
+
+	public function listBerkas(Request $request){
+        $verifikator = Auth::user();
+        DB::statement(DB::raw('set @rownum=0'));
+        if(!empty($request->input('start'))){
+            $start = $request->input('start');
+        }else{
+            $start = 0;
+        }
+
+        if(!empty($request->input('length'))){
+            $length = $request->input('length');
+        }else{
+            $length = 10;
+        }
+
+        $list_berkas = VerifikasiBerkasLamaran::select(DB::raw('@rownum  := @rownum  + 1 AS rownum'), 
+                                            'berkas_lamaran.id_berkas_lamaran', 
+                                            'pelamar.nik', 
+                                            'pelamar.nama_lengkap', 
+                                            'penempatan.nama_penempatan',
+                                            'verifikasi_berkas_lamaran.file_foto',
+                                            'verifikasi_berkas_lamaran.file_ktp',
+                                            'verifikasi_berkas_lamaran.file_npwp',
+                                            'verifikasi_berkas_lamaran.file_keterangan_sehat',
+                                            'verifikasi_berkas_lamaran.file_surat_lamaran',
+                                            'verifikasi_berkas_lamaran.file_cv',
+                                            'verifikasi_berkas_lamaran.file_ijazah',
+                                            'verifikasi_berkas_lamaran.file_transkrip',
+                                            'verifikasi_berkas_lamaran.file_skck',
+                                            'verifikasi_berkas_lamaran.file_bebas_narkoba',
+                                            'verifikasi_berkas_lamaran.file_keterangan_pengalaman',
+                                            'verifikasi_berkas_lamaran.file_sertifikat',
+                                            'verifikasi_berkas_lamaran.file_bukan_pns',
+                                            'verifikasi_berkas_lamaran.file_bpjs',
+                                            'verifikasi_berkas_lamaran.file_summary',
+                                            DB::raw('in1.nilai as nilai1'),
+                                            DB::raw('in2.nilai as nilai2'),
+                                            DB::raw('in3.nilai as nilai3'),
+                                            DB::raw('in4.nilai as nilai4'),
+                                            'berkas_lamaran.created_at',
+                                            DB::raw('(in1.nilai + in2.nilai + in3.nilai + in4.nilai) as total_nilai'))
+                        ->join('berkas_lamaran', 'berkas_lamaran.id_berkas_lamaran', '=', 'verifikasi_berkas_lamaran.id_berkas_lamaran')
+                        ->join('pelamar', 'pelamar.id_pelamar', '=', 'berkas_lamaran.id_pelamar')
+                        ->join('penempatan', 'penempatan.id_penempatan', '=', 'berkas_lamaran.id_penempatan')
+                        ->join(DB::raw('option_index_nilai as in1'), 'in1.id_option_index_nilai', '=', 'verifikasi_berkas_lamaran.index_nilai_1')
+                        ->join(DB::raw('option_index_nilai as in2'), 'in2.id_option_index_nilai', '=', 'verifikasi_berkas_lamaran.index_nilai_2')
+                        ->join(DB::raw('option_index_nilai as in3'), 'in3.id_option_index_nilai', '=', 'verifikasi_berkas_lamaran.index_nilai_3')
+                        ->join(DB::raw('option_index_nilai as in4'), 'in4.id_option_index_nilai', '=', 'verifikasi_berkas_lamaran.index_nilai_4')
+                        ->where('status', 10);
+
+        if(!empty($request->input('penempatan'))){
+            $list_berkas->where('berkas_lamaran.id_penempatan', $request->input('penempatan'));
+        }
+        
+        if(!empty($request->input('jabatan'))){
+            $list_berkas->where('berkas_lamaran.id_jabatan_lamaran', $request->input('jabatan'));
+        }
+
+        $list_berkas->orderByDesc('total_nilai')->get();
+        
+        $total_records = $list_berkas->count();
+
+        return Datatables::of($list_berkas)
+                ->editColumn('nama_lengkap', function($item){
+                    return ucwords(strtolower($item->nama_lengkap));
+                })
+                ->editColumn('created_at', function($item){
+                    return $item->created_at->format('j M Y H:i').' WIB';
+                })
+                ->setTotalRecords($total_records)
                 ->make(true);
     }
 }

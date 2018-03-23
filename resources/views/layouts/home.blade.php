@@ -169,8 +169,8 @@
                     
                     <td class="has-text-centered">{{$jumlah_belum_verif}}</td>
                     <td class="has-text-centered">{{$jumlah_sudah_verif}}</td>
-                    <td class="has-text-centered">{{$berkas_korfas}}</td>
-                    <td class="has-text-centered">{{$berkas_tfl}}</td>
+                    <td class="has-text-centered"><a href="{{url('berkas-terverifikasi?penempatan='.$penempatan->id_penempatan.'&jabatan=1')}}">{{$berkas_korfas}}</a></td>
+                    <td class="has-text-centered"><a href="{{url('berkas-terverifikasi?penempatan='.$penempatan->id_penempatan.'&jabatan=2')}}">{{$berkas_tfl}}</a></td>
                 </tr>
                 @endforeach
             </tbody>
