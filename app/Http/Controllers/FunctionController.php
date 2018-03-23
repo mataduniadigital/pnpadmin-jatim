@@ -199,13 +199,12 @@ class FunctionController extends BaseController
         if($action == 10 || $action == 11){
             $berkas_lamaran = BerkasLamaran::find($id);
                 
-            $berkas_lamaran->status = 11;
+            $berkas_lamaran->status = $action;
             $berkas_lamaran->save();
     
-            Session::flash('success-msg', 'Action berhasil ...');
-            return Redirect::back();
+            return 1;
         }else{
-            return Redirect::back();
+            return 0;
         }
     }
 

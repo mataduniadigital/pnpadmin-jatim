@@ -118,11 +118,19 @@
                     <th class="has-text-centered">
                         <abbr>Terverif lamaran<br> TFL</abbr>
                     </th>
+                    <th class="has-text-centered">
+                        <abbr>Lolos<br> KORFAS</abbr>
+                    </th>
+                    <th class="has-text-centered">
+                        <abbr>Lolos<br> TFL</abbr>
+                    </th>
                 </tr>
             </thead>
             @php
                 $jumlah_berkas_korfas = 0;
+                $jumlah_lolos_korfas = 0;
                 $jumlah_berkas_tfl = 0;
+                $jumlah_lolos_tfl = 0;
             @endphp
             <tbody>
                 @foreach($list_penempatan as $no => $penempatan)
@@ -147,6 +155,12 @@
 
                         $berkas_tfl = \App\Models\BerkasLamaran::where(['id_penempatan' => $penempatan->id_penempatan, 'id_jabatan_lamaran' => 2])->whereIn('status', [10,11])->get()->count();
                         $jumlah_berkas_tfl = $jumlah_berkas_tfl + $berkas_tfl;
+
+                        $lolos_korfas = \App\Models\BerkasLamaran::where(['id_penempatan' => $penempatan->id_penempatan, 'id_jabatan_lamaran' => 1])->where('status', 11)->get()->count();
+                        $jumlah_lolos_korfas = $jumlah_lolos_korfas + $lolos_korfas;
+
+                        $lolos_tfl = \App\Models\BerkasLamaran::where(['id_penempatan' => $penempatan->id_penempatan, 'id_jabatan_lamaran' => 2])->where('status', 11)->get()->count();
+                        $jumlah_lolos_tfl = $jumlah_lolos_tfl + $lolos_tfl;
                     @endphp
                     @if(!empty($berkas_belum_verif[0]))
                         @php
@@ -171,6 +185,8 @@
                     <td class="has-text-centered">{{$jumlah_sudah_verif}}</td>
                     <td class="has-text-centered"><a href="{{url('berkas-terverifikasi?penempatan='.$penempatan->id_penempatan.'&jabatan=1')}}">{{$berkas_korfas}}</a></td>
                     <td class="has-text-centered"><a href="{{url('berkas-terverifikasi?penempatan='.$penempatan->id_penempatan.'&jabatan=2')}}">{{$berkas_tfl}}</a></td>
+                    <td class="has-text-centered">{{$lolos_korfas}}</td>
+                    <td class="has-text-centered">{{$lolos_tfl}}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -189,6 +205,12 @@
                     </th>
                     <th class="has-text-centered">
                         <abbr>{{$jumlah_berkas_tfl}}</abbr>
+                    </th>
+                    <th class="has-text-centered">
+                        <abbr>{{$jumlah_lolos_korfas}}</abbr>
+                    </th>
+                    <th class="has-text-centered">
+                        <abbr>{{$jumlah_lolos_tfl}}</abbr>
                     </th>
                 </tr>
             </tfoot>

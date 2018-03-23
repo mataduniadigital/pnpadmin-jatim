@@ -60,34 +60,34 @@
                 render: function(data) {
                     var text = '';
                     if(data.file_1 == null || data.file_1 == 0){
-                        text = text+'FOTO: <span class="tag is-danger">x</span><br>';
+                        text = text+'Foto:<span class="tag is-danger">x</span><br><br>';
                     }else if(data.file_1 == 1){
-                        text = text+'FOTO:<span class="tag is-success">Verif</span><br>';
+                        text = text+'Foto:<span class="tag is-success">Verif</span><br><br>';
                     }
                     if(data.file_2 == null || data.file_2 == 0){
-                        text = text+'KTP: <span class="tag is-danger">x</span><br>';
+                        text = text+'KTP:<span class="tag is-danger">x</span><br><br>';
                     }else if(data.file_2 == 1){
-                        text = text+'KTP:<span class="tag is-success">Verif</span><br>';
+                        text = text+'KTP:<span class="tag is-success">Verif</span><br><br>';
                     }
                     if(data.file_3 == null || data.file_3 == 0){
-                        text = text+'NPWP: <span class="tag is-danger">x</span><br>';
+                        text = text+'NPWP:<span class="tag is-danger">x</span><br><br>';
                     }else if(data.file_3 == 1){
-                        text = text+'NPWP:<span class="tag is-success">Verif</span><br>';
+                        text = text+'NPWP:<span class="tag is-success">Verif</span><br><br>';
                     }
                     if(data.file_4 == null || data.file_4 == 0){
-                        text = text+'KETERANGAN SEHAT: <span class="tag is-danger">x</span><br>';
+                        text = text+'Surat sehat:<span class="tag is-danger">x</span><br><br>';
                     }else if(data.file_4 == 1){
-                        text = text+'KETERANGAN SEHAT:<span class="tag is-success">Verif</span><br>';
+                        text = text+'Surat sehat:<span class="tag is-success">Verif</span><br><br>';
                     }
                     if(data.file_5 == null || data.file_5 == 0){
-                        text = text+'SURAT LAMARAN: <span class="tag is-danger">x</span><br>';
+                        text = text+'Lamaran:<span class="tag is-danger">x</span><br><br>';
                     }else if(data.file_5 == 1){
-                        text = text+'SURAT LAMARAN:<span class="tag is-success">Verif</span><br>';
+                        text = text+'Lamaran:<span class="tag is-success">Verif</span><br><br>';
                     }
                     if(data.file_6 == null || data.file_6 == 0){
-                        text = text+'CV: <span class="tag is-danger">x</span><br>';
+                        text = text+'CV:<span class="tag is-danger">x</span><br><br>';
                     }else if(data.file_6 == 1){
-                        text = text+'CV:<span class="tag is-success">Verif</span><br>';
+                        text = text+'CV:<span class="tag is-success">Verif</span><br><br>';
                     }
                     return text;
                 } 
@@ -96,34 +96,34 @@
                 render: function(data) {
                     var text = '';
                     if(data.file_1 == null || data.file_1 == 0){
-                        text = text+'IJAZAH: <span class="tag is-danger">x</span><br>';
+                        text = text+'Ijazah:<span class="tag is-danger">x</span><br><br>';
                     }else if(data.file_1 == 1){
-                        text = text+'IJAZAH:<span class="tag is-success">Verif</span><br>';
+                        text = text+'Ijazah:<span class="tag is-success">Verif</span><br><br>';
                     }
                     if(data.file_2 == null || data.file_2 == 0){
-                        text = text+'TRANSKRIP: <span class="tag is-danger">x</span><br>';
+                        text = text+'Transkrip:<span class="tag is-danger">x</span><br><br>';
                     }else if(data.file_2 == 1){
-                        text = text+'TRANSKRIP:<span class="tag is-success">Verif</span><br>';
+                        text = text+'Transkrip:<span class="tag is-success">Verif</span><br><br>';
                     }
                     if(data.file_3 == null || data.file_3 == 0){
-                        text = text+'SKCK: <span class="tag is-danger">x</span><br>';
+                        text = text+'SKCK:<span class="tag is-danger">x</span><br><br>';
                     }else if(data.file_3 == 1){
-                        text = text+'SKCK:<span class="tag is-success">Verif</span><br>';
+                        text = text+'SKCK:<span class="tag is-success">Verif</span><br><br>';
                     }
                     if(data.file_4 == null || data.file_4 == 0){
-                        text = text+'BEBAS NARKOBA: <span class="tag is-danger">x</span><br>';
+                        text = text+'Surat Bebas Narkoba:<span class="tag is-danger">x</span><br><br>';
                     }else if(data.file_4 == 1){
-                        text = text+'BEBAS NARKOBA:<span class="tag is-success">Verif</span><br>';
+                        text = text+'Surat Bebas Narkoba:<span class="tag is-success">Verif</span><br><br>';
                     }
                     if(data.file_5 == null || data.file_5 == 0){
-                        text = text+'PERNYATAAN: <span class="tag is-danger">x</span><br>';
+                        text = text+'Surat Pernyataan:<span class="tag is-danger">x</span><br><br>';
                     }else if(data.file_5 == 1){
-                        text = text+'PERNYATAAN:<span class="tag is-success">Verif</span><br>';
+                        text = text+'Surat Pernyataan:<span class="tag is-success">Verif</span><br><br>';
                     }
                     if(data.file_6 == null || data.file_6 == 0){
-                        text = text+'FILE GABUNGAN: <span class="tag is-danger">x</span><br>';
+                        text = text+'File Gabungan:<span class="tag is-danger">x</span><br><br>';
                     }else if(data.file_6 == 1){
-                        text = text+'FILE GABUNGAN:<span class="tag is-success">Verif</span><br>';
+                        text = text+'File Gabungan:<span class="tag is-success">Verif</span><br><br>';
                     }
                     return text;
                 } 
@@ -132,19 +132,19 @@
                 render: function(data) {
                     var text = '';
                     if(data.file_1 == null || data.file_1 == 0){
-                        text = text+'PENGALAMAN: <span class="tag is-danger">x</span><br>';
+                        text = text+'Surat Pengalaman:<span class="tag is-danger">x</span><br><br>';
                     }else if(data.file_1 == 1){
-                        text = text+'PENGALAMAN:<span class="tag is-success">Verif</span><br>';
+                        text = text+'Surat Pengalaman:<span class="tag is-success">Verif</span><br><br>';
                     }
                     if(data.file_2 == null || data.file_2 == 0){
-                        text = text+'SERTIF: <span class="tag is-danger">x</span><br>';
+                        text = text+'Seritf:<span class="tag is-danger">x</span><br><br>';
                     }else if(data.file_2 == 1){
-                        text = text+'SERTIF:<span class="tag is-success">Verif</span><br>';
+                        text = text+'Seritf:<span class="tag is-success">Verif</span><br><br>';
                     }
                     if(data.file_3 == null || data.file_3 == 0){
-                        text = text+'BPJS: <span class="tag is-danger">x</span><br>';
+                        text = text+'BPJS:<span class="tag is-danger">x</span><br><br>';
                     }else if(data.file_3 == 1){
-                        text = text+'BPJS:<span class="tag is-success">Verif</span><br>';
+                        text = text+'BPJS:<span class="tag is-success">Verif</span><br><br>';
                     }
                     return text;
                 } 
@@ -199,17 +199,41 @@
     
     $(document).on('click', '.lolos-btn', function(){
         var item = $(this);
-        window.location.href = url+'/loloskan/'+item.attr('data-id')+'/11';
+        $.ajax({
+			async: false,
+			type: 'GET',
+			url: url+'/loloskan/'+item.attr('data-id')+'/11',
+			success: function(data){
+				if(data == 1){
+					alert('Success');
+                    berkas_proses_table.ajax.reload();
+				}else{
+					alert('Failed');
+				}
+           	}
+		});
     });
     
     $(document).on('click', '.batal-btn', function(){
         var item = $(this);
-        window.location.href = url+'/loloskan/'+item.attr('data-id')+'/10';
+        $.ajax({
+			async: false,
+			type: 'GET',
+			url: url+'/loloskan/'+item.attr('data-id')+'/10',
+			success: function(data){
+				if(data == 1){
+					alert('Success');
+                    berkas_proses_table.ajax.reload();
+				}else{
+					alert('Failed');
+				}
+           	}
+		});
     });
 
     $(document).on('click', '.lihat-detil-btn', function(){
         var item = $(this);
-        window.location.href = url+'/show-berkas/'+item.attr('data-id');
+        window.open(url+'/show-berkas/'+item.attr('data-id'),'_blank');
     });
 </script>
 @endpush

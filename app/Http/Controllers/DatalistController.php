@@ -204,7 +204,6 @@ class DatalistController extends BaseController
         $list_berkas->orderByDesc('total_nilai')->get();
         
         $total_records = $list_berkas->count();
-
         return Datatables::of($list_berkas)
                 ->editColumn('nama_lengkap', function($item){
                     return ucwords(strtolower($item->nama_lengkap));
