@@ -35,7 +35,7 @@ class LayoutController extends BaseController
                                                         ->get();
         $jumlah_berkas_per_penempatan_sudah_verif = BerkasLamaran::select('penempatan.id_penempatan', 'nama_penempatan', DB::raw('count(berkas_lamaran.id_penempatan) as jumlah'))
                                                         ->join('penempatan', 'penempatan.id_penempatan', '=', 'berkas_lamaran.id_penempatan')
-                                                        ->where('status', 10)
+                                                        ->whereIn('status', [10, 11])
                                                         ->groupBy('penempatan.id_penempatan', 'penempatan.nama_penempatan')
                                                         ->orderBy('penempatan.id_penempatan')
                                                         ->get();
@@ -89,9 +89,32 @@ class LayoutController extends BaseController
             return Redirect::back();
         }
     }
+    
+	public function indexShowBerkas(Request $request, $id){
+        $berkas_lamaran = BerkasLamaran::find($id);
+        $pelamar = Pelamar::find($berkas_lamaran->id_pelamar);
+        $verifikasi_berkas_lamaran = VerifikasiBerkasLamaran::where('id_berkas_lamaran', $berkas_lamaran->id_berkas_lamaran)->first();
+
+        $data = array(
+            'pelamar' => $pelamar,
+            'berkas_lamaran' => $berkas_lamaran,
+            'penempatan' => Penempatan::find($berkas_lamaran->id_penempatan),
+            'verifikasi_berkas_lamaran' => $verifikasi_berkas_lamaran,
+            'list_jabatan_lamatan' => JabatanLamaran::get(),
+            'option_index_nilai_1' => OptionIndexNilai::where('tipe', 1)->get(),
+            'option_index_nilai_2' => OptionIndexNilai::where('tipe', 2)->get(),
+            'option_index_nilai_3' => OptionIndexNilai::where('tipe', 3)->get(),
+            'option_index_nilai_4' => OptionIndexNilai::where('tipe', 4)->get()
+        );
+        return view('layouts/show-berkas', $data);
+    }
 
 	public function indexVerifikasiBerkas(Request $request){
         return view('layouts/verifikasi-berkas');
+    }
+
+	public function indexListPelamar(Request $request){
+        return view('layouts/list-pelamar');
     }
     
 	public function indexBerkasTerverifikas(Request $request){

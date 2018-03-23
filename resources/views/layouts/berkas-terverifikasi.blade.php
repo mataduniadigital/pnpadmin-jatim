@@ -40,6 +40,7 @@
                     <th>Nilai Poin 4</th>
                     <th>Total Nilai</th>
                     <th>Tanggal Daftar</th>
+                    <th>Action</th>
                 </tr>
             </thead>
         </table>
@@ -207,13 +208,39 @@
             { data: 'nilai3', name: 'nilai3' },
             { data: 'nilai4', name: 'nilai4' },
             { data: 'total_nilai', name: 'total_nilai' },
-            { data: 'created_at', name: 'created_at' }
+            { data: 'created_at', name: 'created_at' },
+            { data: 'action', name: 'action', searchable: false, orderable: false, 
+                render: function(data) {
+                    if(data.status == 10){
+                        return '<a class="button is-small is-primary lolos-btn" data-id="'+data.id+'">'+
+                        '    <span class="icon is-small">'+
+                        '        <i class="fa fa-check"></i>'+
+                        '    </span>'+
+                        '    <span>Loloskan</span>'+
+                        '</a>';
+                    }else if(data.status == 11){
+                        return '<a class="button is-small is-danger batal-btn" data-id="'+data.id+'">'+
+                        '    <span class="icon is-small">'+
+                        '        <i class="fa fa-check"></i>'+
+                        '    </span>'+
+                        '    <span>Batalkan</span>'+
+                        '</a>';
+                    }else{
+                        return '';
+                    }
+                } 
+            },
         ]
     });
     
-    $(document).on('click', '.verifikasi-item-btn', function(){
+    $(document).on('click', '.lolos-btn', function(){
         var item = $(this);
-        window.location.href = url+'/verifikasi/'+item.attr('data-id');
+        window.location.href = url+'/loloskan/'+item.attr('data-id')+'/11';
+    });
+    
+    $(document).on('click', '.batal-btn', function(){
+        var item = $(this);
+        window.location.href = url+'/loloskan/'+item.attr('data-id')+'/10';
     });
 </script>
 @endpush

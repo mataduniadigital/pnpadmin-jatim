@@ -47,7 +47,7 @@
                 <div class="content">
                     Pelamar terdaftar
                     <br>
-                    <b style="font-size: 46px;">{{$jumlah_pelamar}}</b>
+                    <a href="{{url('list-pelamar')}}"><b style="font-size: 46px;">{{$jumlah_pelamar}}</b></a>
                 </div>
             </div>
             <div class="column has-text-centered" style="border: 1px solid #bbbbbb;">
@@ -142,10 +142,10 @@
                                 return $item->id_penempatan == $penempatan->id_penempatan;
                             })->values();
 
-                        $berkas_korfas = \App\Models\BerkasLamaran::where(['id_penempatan' => $penempatan->id_penempatan, 'status' => 10, 'id_jabatan_lamaran' => 1])->get()->count();
+                        $berkas_korfas = \App\Models\BerkasLamaran::where(['id_penempatan' => $penempatan->id_penempatan, 'id_jabatan_lamaran' => 1])->whereIn('status', [10,11])->get()->count();
                         $jumlah_berkas_korfas = $jumlah_berkas_korfas + $berkas_korfas;
 
-                        $berkas_tfl = \App\Models\BerkasLamaran::where(['id_penempatan' => $penempatan->id_penempatan, 'status' => 10, 'id_jabatan_lamaran' => 2])->get()->count();
+                        $berkas_tfl = \App\Models\BerkasLamaran::where(['id_penempatan' => $penempatan->id_penempatan, 'id_jabatan_lamaran' => 2])->whereIn('status', [10,11])->get()->count();
                         $jumlah_berkas_tfl = $jumlah_berkas_tfl + $berkas_tfl;
                     @endphp
                     @if(!empty($berkas_belum_verif[0]))

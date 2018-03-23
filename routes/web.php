@@ -33,10 +33,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('savenilai-verifikasi/{id}', ['uses' => 'FunctionController@actionSaveNilai']);
     
     Route::get('berkas-terverifikasi', ['uses' => 'LayoutController@indexBerkasTerverifikas']);
+    Route::get('list-pelamar', ['uses' => 'LayoutController@indexListPelamar']);
+    Route::get('show-berkas/{id}', ['uses' => 'LayoutController@indexShowBerkas']);
+
+    Route::get('loloskan/{id}/{action}', ['uses' => 'FunctionController@actionLoloskan']);
     
     Route::group(['prefix' => 'datalist'], function(){
         Route::get('berkas-not-verif', ['uses' => 'DatalistController@berkasNotVerif']);
         Route::get('berkas-proses-verif', ['uses' => 'DatalistController@berkasProses']);
         Route::get('list-berkas', ['uses' => 'DatalistController@listBerkas']);
+        Route::get('pelamar', ['uses' => 'DatalistController@listPelamar']);
     });
 });

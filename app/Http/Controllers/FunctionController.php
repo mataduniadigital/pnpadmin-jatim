@@ -195,4 +195,18 @@ class FunctionController extends BaseController
         }
     }
 
+    public function actionLoloskan(Request $request, $id = 0, $action){
+        if($action == 10 || $action == 11){
+            $berkas_lamaran = BerkasLamaran::find($id);
+                
+            $berkas_lamaran->status = 11;
+            $berkas_lamaran->save();
+    
+            Session::flash('success-msg', 'Action berhasil ...');
+            return Redirect::back();
+        }else{
+            return Redirect::back();
+        }
+    }
+
 }
