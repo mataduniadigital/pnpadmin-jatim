@@ -116,10 +116,10 @@
                         <abbr>Terverif lamaran<br> KORFAS</abbr>
                     </th>
                     <th class="has-text-centered">
-                        <abbr>Terverif lamaran<br> TFL</abbr>
+                        <abbr>Lolos<br> KORFAS</abbr>
                     </th>
                     <th class="has-text-centered">
-                        <abbr>Lolos<br> KORFAS</abbr>
+                        <abbr>Terverif lamaran<br> TFL</abbr>
                     </th>
                     <th class="has-text-centered">
                         <abbr>Lolos<br> TFL</abbr>
@@ -184,8 +184,8 @@
                     <td class="has-text-centered">{{$jumlah_belum_verif}}</td>
                     <td class="has-text-centered">{{$jumlah_sudah_verif}}</td>
                     <td class="has-text-centered"><a href="{{url('berkas-terverifikasi?penempatan='.$penempatan->id_penempatan.'&jabatan=1')}}">{{$berkas_korfas}}</a></td>
-                    <td class="has-text-centered"><a href="{{url('berkas-terverifikasi?penempatan='.$penempatan->id_penempatan.'&jabatan=2')}}">{{$berkas_tfl}}</a></td>
                     <td class="has-text-centered">{{$lolos_korfas}}</td>
+                    <td class="has-text-centered"><a href="{{url('berkas-terverifikasi?penempatan='.$penempatan->id_penempatan.'&jabatan=2')}}">{{$berkas_tfl}}</a></td>
                     <td class="has-text-centered">{{$lolos_tfl}}</td>
                 </tr>
                 @endforeach
@@ -204,10 +204,10 @@
                         <abbr>{{$jumlah_berkas_korfas}}</abbr>
                     </th>
                     <th class="has-text-centered">
-                        <abbr>{{$jumlah_berkas_tfl}}</abbr>
+                        <abbr>{{$jumlah_lolos_korfas}}</abbr>
                     </th>
                     <th class="has-text-centered">
-                        <abbr>{{$jumlah_lolos_korfas}}</abbr>
+                        <abbr>{{$jumlah_berkas_tfl}}</abbr>
                     </th>
                     <th class="has-text-centered">
                         <abbr>{{$jumlah_lolos_tfl}}</abbr>
