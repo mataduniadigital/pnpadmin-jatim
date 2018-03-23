@@ -164,7 +164,6 @@ class DatalistController extends BaseController
                                             'berkas_lamaran.status', 
                                             'pelamar.nik', 
                                             'pelamar.nama_lengkap', 
-                                            'penempatan.nama_penempatan',
                                             'verifikasi_berkas_lamaran.file_foto',
                                             'verifikasi_berkas_lamaran.file_ktp',
                                             'verifikasi_berkas_lamaran.file_npwp',
@@ -188,7 +187,6 @@ class DatalistController extends BaseController
                                             DB::raw('(in1.nilai + in2.nilai + in3.nilai + in4.nilai) as total_nilai'))
                         ->join('berkas_lamaran', 'berkas_lamaran.id_berkas_lamaran', '=', 'verifikasi_berkas_lamaran.id_berkas_lamaran')
                         ->join('pelamar', 'pelamar.id_pelamar', '=', 'berkas_lamaran.id_pelamar')
-                        ->join('penempatan', 'penempatan.id_penempatan', '=', 'berkas_lamaran.id_penempatan')
                         ->join(DB::raw('option_index_nilai as in1'), 'in1.id_option_index_nilai', '=', 'verifikasi_berkas_lamaran.index_nilai_1')
                         ->join(DB::raw('option_index_nilai as in2'), 'in2.id_option_index_nilai', '=', 'verifikasi_berkas_lamaran.index_nilai_2')
                         ->join(DB::raw('option_index_nilai as in3'), 'in3.id_option_index_nilai', '=', 'verifikasi_berkas_lamaran.index_nilai_3')
@@ -213,6 +211,39 @@ class DatalistController extends BaseController
                 })
                 ->editColumn('created_at', function($item){
                     return $item->created_at->format('j M Y H:i').' WIB';
+                })
+                ->addColumn('file_wajib_1', function($item){
+                    $data = array(
+                        'file_1' => $item->file_foto,
+                        'file_2' => $item->file_ktp,
+                        'file_3' => $item->file_npwp,
+                        'file_4' => $item->file_keterangan_sehat,
+                        'file_5' => $item->file_surat_lamaran,
+                        'file_6' => $item->file_cv
+                    );
+
+                    return $data;
+                })
+                ->addColumn('file_wajib_2', function($item){
+                    $data = array(
+                        'file_1' => $item->file_ijazah,
+                        'file_2' => $item->file_transkrip,
+                        'file_3' => $item->file_skck,
+                        'file_4' => $item->file_bebas_narkoba,
+                        'file_5' => $item->file_bukan_pns,
+                        'file_6' => $item->file_summary
+                    );
+
+                    return $data;
+                })
+                ->addColumn('file_tidak_wajib', function($item){
+                    $data = array(
+                        'file_1' => $item->file_keterangan_pengalaman,
+                        'file_2' => $item->file_sertifikat,
+                        'file_2' => $item->file_bpjs
+                    );
+
+                    return $data;
                 })
                 ->addColumn('action', function($item){
                     $data = array(

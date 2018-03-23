@@ -18,28 +18,14 @@
                     <th>No</th>
                     <th>NIK</th>
                     <th>Nama</th>
-                    <th>Penempatan</th>
-                    <th>Berkas Foto</th>
-                    <th>Berkas KTP</th>
-                    <th>Berkas NPWP</th>
-                    <th>Surat Keterangan Sehat</th>
-                    <th>Surat Lamaran</th>
-                    <th>CV</th>
-                    <th>Ijazah</th>
-                    <th>Transkrip</th>
-                    <th>SKCK</th>
-                    <th>Surat Keterangan Bebas Narkoba</th>
-                    <th>Surat Keterangan Pengalaman</th>
-                    <th>Sertifikat</th>
-                    <th>Surat Keterangan Poin M</th>
-                    <th>BPJS</th>
-                    <th>Arsip Semua File</th>
+                    <th>Berkas Wajib 1</th>
+                    <th>Berkas Wajib 2</th>
+                    <th>Berkas Tidak Wajib</th>
                     <th>Nilai Poin 1</th>
                     <th>Nilai Poin 2</th>
                     <th>Nilai Poin 3</th>
                     <th>Nilai Poin 4</th>
                     <th>Total Nilai</th>
-                    <th>Tanggal Daftar</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -62,145 +48,105 @@
         processing: true,
         serverSide: true,
         scrollX: true,
+        fixedHeader: {
+            header: true
+        },
         ajax: '{{url('datalist/list-berkas')}}?penempatan={{$input->penempatan}}&jabatan={{$input->jabatan}}',
         columns: [
             { data: 'rownum', name: 'rownum', searchable: false, orderable: false},
             { data: 'nik', name: 'nik' },
             { data: 'nama_lengkap', name: 'nama_lengkap' },
-            { data: 'nama_penempatan', name: 'nama_penempatan' },
-            { data: 'file_foto', name: 'file_foto', searchable: false, orderable: false, 
+            { data: 'file_wajib_1', name: 'file_wajib_1', searchable: false, orderable: false, 
                 render: function(data) {
-                    if(data == null || data == 0){
-                        return '<span class="tag is-danger">Tidak diverifikasi</span>';
-                    }else if(data == 1){
-                        return '<span class="tag is-success">Sudah diverifikasi</span>';
+                    var text = '';
+                    if(data.file_1 == null || data.file_1 == 0){
+                        text = text+'FOTO: <span class="tag is-danger">x</span><br>';
+                    }else if(data.file_1 == 1){
+                        text = text+'FOTO:<span class="tag is-success">Verif</span><br>';
                     }
+                    if(data.file_2 == null || data.file_2 == 0){
+                        text = text+'KTP: <span class="tag is-danger">x</span><br>';
+                    }else if(data.file_2 == 1){
+                        text = text+'KTP:<span class="tag is-success">Verif</span><br>';
+                    }
+                    if(data.file_3 == null || data.file_3 == 0){
+                        text = text+'NPWP: <span class="tag is-danger">x</span><br>';
+                    }else if(data.file_3 == 1){
+                        text = text+'NPWP:<span class="tag is-success">Verif</span><br>';
+                    }
+                    if(data.file_4 == null || data.file_4 == 0){
+                        text = text+'KETERANGAN SEHAT: <span class="tag is-danger">x</span><br>';
+                    }else if(data.file_4 == 1){
+                        text = text+'KETERANGAN SEHAT:<span class="tag is-success">Verif</span><br>';
+                    }
+                    if(data.file_5 == null || data.file_5 == 0){
+                        text = text+'SURAT LAMARAN: <span class="tag is-danger">x</span><br>';
+                    }else if(data.file_5 == 1){
+                        text = text+'SURAT LAMARAN:<span class="tag is-success">Verif</span><br>';
+                    }
+                    if(data.file_6 == null || data.file_6 == 0){
+                        text = text+'CV: <span class="tag is-danger">x</span><br>';
+                    }else if(data.file_6 == 1){
+                        text = text+'CV:<span class="tag is-success">Verif</span><br>';
+                    }
+                    return text;
                 } 
             },
-            { data: 'file_ktp', name: 'file_ktp', searchable: false, orderable: false, 
+            { data: 'file_wajib_2', name: 'file_wajib_2', searchable: false, orderable: false, 
                 render: function(data) {
-                    if(data == null || data == 0){
-                        return '<span class="tag is-danger">Tidak diverifikasi</span>';
-                    }else if(data == 1){
-                        return '<span class="tag is-success">Sudah diverifikasi</span>';
+                    var text = '';
+                    if(data.file_1 == null || data.file_1 == 0){
+                        text = text+'IJAZAH: <span class="tag is-danger">x</span><br>';
+                    }else if(data.file_1 == 1){
+                        text = text+'IJAZAH:<span class="tag is-success">Verif</span><br>';
                     }
+                    if(data.file_2 == null || data.file_2 == 0){
+                        text = text+'TRANSKRIP: <span class="tag is-danger">x</span><br>';
+                    }else if(data.file_2 == 1){
+                        text = text+'TRANSKRIP:<span class="tag is-success">Verif</span><br>';
+                    }
+                    if(data.file_3 == null || data.file_3 == 0){
+                        text = text+'SKCK: <span class="tag is-danger">x</span><br>';
+                    }else if(data.file_3 == 1){
+                        text = text+'SKCK:<span class="tag is-success">Verif</span><br>';
+                    }
+                    if(data.file_4 == null || data.file_4 == 0){
+                        text = text+'BEBAS NARKOBA: <span class="tag is-danger">x</span><br>';
+                    }else if(data.file_4 == 1){
+                        text = text+'BEBAS NARKOBA:<span class="tag is-success">Verif</span><br>';
+                    }
+                    if(data.file_5 == null || data.file_5 == 0){
+                        text = text+'PERNYATAAN: <span class="tag is-danger">x</span><br>';
+                    }else if(data.file_5 == 1){
+                        text = text+'PERNYATAAN:<span class="tag is-success">Verif</span><br>';
+                    }
+                    if(data.file_6 == null || data.file_6 == 0){
+                        text = text+'FILE GABUNGAN: <span class="tag is-danger">x</span><br>';
+                    }else if(data.file_6 == 1){
+                        text = text+'FILE GABUNGAN:<span class="tag is-success">Verif</span><br>';
+                    }
+                    return text;
                 } 
             },
-            { data: 'file_npwp', name: 'file_npwp', searchable: false, orderable: false, 
+            { data: 'file_tidak_wajib', name: 'file_tidak_wajib', searchable: false, orderable: false, 
                 render: function(data) {
-                    if(data == null || data == 0){
-                        return '<span class="tag is-danger">Tidak diverifikasi</span>';
-                    }else if(data == 1){
-                        return '<span class="tag is-success">Sudah diverifikasi</span>';
+                    var text = '';
+                    if(data.file_1 == null || data.file_1 == 0){
+                        text = text+'PENGALAMAN: <span class="tag is-danger">x</span><br>';
+                    }else if(data.file_1 == 1){
+                        text = text+'PENGALAMAN:<span class="tag is-success">Verif</span><br>';
                     }
-                } 
-            },
-            { data: 'file_keterangan_sehat', name: 'file_keterangan_sehat', searchable: false, orderable: false, 
-                render: function(data) {
-                    if(data == null || data == 0){
-                        return '<span class="tag is-danger">Tidak diverifikasi</span>';
-                    }else if(data == 1){
-                        return '<span class="tag is-success">Sudah diverifikasi</span>';
+                    if(data.file_2 == null || data.file_2 == 0){
+                        text = text+'SERTIF: <span class="tag is-danger">x</span><br>';
+                    }else if(data.file_2 == 1){
+                        text = text+'SERTIF:<span class="tag is-success">Verif</span><br>';
                     }
-                } 
-            },
-            { data: 'file_surat_lamaran', name: 'file_surat_lamaran', searchable: false, orderable: false, 
-                render: function(data) {
-                    if(data == null || data == 0){
-                        return '<span class="tag is-danger">Tidak diverifikasi</span>';
-                    }else if(data == 1){
-                        return '<span class="tag is-success">Sudah diverifikasi</span>';
+                    if(data.file_3 == null || data.file_3 == 0){
+                        text = text+'BPJS: <span class="tag is-danger">x</span><br>';
+                    }else if(data.file_3 == 1){
+                        text = text+'BPJS:<span class="tag is-success">Verif</span><br>';
                     }
-                } 
-            },
-            { data: 'file_cv', name: 'file_cv', searchable: false, orderable: false, 
-                render: function(data) {
-                    if(data == null || data == 0){
-                        return '<span class="tag is-danger">Tidak diverifikasi</span>';
-                    }else if(data == 1){
-                        return '<span class="tag is-success">Sudah diverifikasi</span>';
-                    }
-                } 
-            },
-            { data: 'file_ijazah', name: 'file_ijazah', searchable: false, orderable: false, 
-                render: function(data) {
-                    if(data == null || data == 0){
-                        return '<span class="tag is-danger">Tidak diverifikasi</span>';
-                    }else if(data == 1){
-                        return '<span class="tag is-success">Sudah diverifikasi</span>';
-                    }
-                } 
-            },
-            { data: 'file_transkrip', name: 'file_transkrip', searchable: false, orderable: false, 
-                render: function(data) {
-                    if(data == null || data == 0){
-                        return '<span class="tag is-danger">Tidak diverifikasi</span>';
-                    }else if(data == 1){
-                        return '<span class="tag is-success">Sudah diverifikasi</span>';
-                    }
-                } 
-            },
-            { data: 'file_skck', name: 'file_skck', searchable: false, orderable: false, 
-                render: function(data) {
-                    if(data == null || data == 0){
-                        return '<span class="tag is-danger">Tidak diverifikasi</span>';
-                    }else if(data == 1){
-                        return '<span class="tag is-success">Sudah diverifikasi</span>';
-                    }
-                } 
-            },
-            { data: 'file_bebas_narkoba', name: 'file_bebas_narkoba', searchable: false, orderable: false, 
-                render: function(data) {
-                    if(data == null || data == 0){
-                        return '<span class="tag is-danger">Tidak diverifikasi</span>';
-                    }else if(data == 1){
-                        return '<span class="tag is-success">Sudah diverifikasi</span>';
-                    }
-                } 
-            },
-            { data: 'file_keterangan_pengalaman', name: 'file_keterangan_pengalaman', searchable: false, orderable: false, 
-                render: function(data) {
-                    if(data == null || data == 0){
-                        return '<span class="tag is-danger">Tidak diverifikasi</span>';
-                    }else if(data == 1){
-                        return '<span class="tag is-success">Sudah diverifikasi</span>';
-                    }
-                } 
-            },
-            { data: 'file_sertifikat', name: 'file_sertifikat', searchable: false, orderable: false, 
-                render: function(data) {
-                    if(data == null || data == 0){
-                        return '<span class="tag is-danger">Tidak diverifikasi</span>';
-                    }else if(data == 1){
-                        return '<span class="tag is-success">Sudah diverifikasi</span>';
-                    }
-                } 
-            },
-            { data: 'file_bukan_pns', name: 'file_bukan_pns', searchable: false, orderable: false, 
-                render: function(data) {
-                    if(data == null || data == 0){
-                        return '<span class="tag is-danger">Tidak diverifikasi</span>';
-                    }else if(data == 1){
-                        return '<span class="tag is-success">Sudah diverifikasi</span>';
-                    }
-                } 
-            },
-            { data: 'file_bpjs', name: 'file_bpjs', searchable: false, orderable: false, 
-                render: function(data) {
-                    if(data == null || data == 0){
-                        return '<span class="tag is-danger">Tidak diverifikasi</span>';
-                    }else if(data == 1){
-                        return '<span class="tag is-success">Sudah diverifikasi</span>';
-                    }
-                } 
-            },
-            { data: 'file_summary', name: 'file_summary', searchable: false, orderable: false, 
-                render: function(data) {
-                    if(data == null || data == 0){
-                        return '<span class="tag is-danger">Tidak diverifikasi</span>';
-                    }else if(data == 1){
-                        return '<span class="tag is-success">Sudah diverifikasi</span>';
-                    }
+                    return text;
                 } 
             },
             { data: 'nilai1', name: 'nilai1' },
@@ -208,7 +154,6 @@
             { data: 'nilai3', name: 'nilai3' },
             { data: 'nilai4', name: 'nilai4' },
             { data: 'total_nilai', name: 'total_nilai' },
-            { data: 'created_at', name: 'created_at' },
             { data: 'action', name: 'action', searchable: false, orderable: false, 
                 render: function(data) {
                     if(data.status == 10){
