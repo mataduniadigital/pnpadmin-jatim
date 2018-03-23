@@ -217,6 +217,12 @@
                         '        <i class="fa fa-check"></i>'+
                         '    </span>'+
                         '    <span>Loloskan</span>'+
+                        '</a>'+
+                        '<a class="button is-small is-link lihat-detil-btn" data-id="'+data.id+'">'+
+                        '    <span class="icon is-small">'+
+                        '        <i class="fa fa-eye"></i>'+
+                        '    </span>'+
+                        '    <span>Lihat Berkas</span>'+
                         '</a>';
                     }else if(data.status == 11){
                         return '<a class="button is-small is-danger batal-btn" data-id="'+data.id+'">'+
@@ -224,12 +230,25 @@
                         '        <i class="fa fa-check"></i>'+
                         '    </span>'+
                         '    <span>Batalkan</span>'+
+                        '</a>'+
+                        '<a class="button is-small is-link lihat-detil-btn" data-id="'+data.id+'">'+
+                        '    <span class="icon is-small">'+
+                        '        <i class="fa fa-eye"></i>'+
+                        '    </span>'+
+                        '    <span>Lihat Berkas</span>'+
                         '</a>';
+                    }else if(data.status == 1){
+                        return '<a class="button is-rounded is-small is-link lihat-detil-btn" data-id="'+data.id+'">'+
+                            '    <span class="icon is-small">'+
+                            '        <i class="fa fa-eye"></i>'+
+                            '    </span>'+
+                            '    <span>Lihat Berkas</span>'+
+                            '</a>';
                     }else{
                         return '';
                     }
                 } 
-            },
+            }
         ]
     });
     
@@ -241,6 +260,11 @@
     $(document).on('click', '.batal-btn', function(){
         var item = $(this);
         window.location.href = url+'/loloskan/'+item.attr('data-id')+'/10';
+    });
+
+    $(document).on('click', '.lihat-detil-btn', function(){
+        var item = $(this);
+        window.location.href = url+'/show-berkas/'+item.attr('data-id');
     });
 </script>
 @endpush

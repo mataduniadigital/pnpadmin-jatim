@@ -19,7 +19,6 @@
                     <th>NIK</th>
                     <th>Nama</th>
                     <th>Status</th>
-                    <th>Action</th>
                 </tr>
             </thead>
         </table>
@@ -56,27 +55,9 @@
                         return '<span class="tag is-success">Sudah submit</span><span class="tag is-link">Sudah terverifikasi</span>';
                     }
                 } 
-            },
-            { data: 'action', name: 'action', searchable: false, orderable: false, 
-                render: function(data) {
-                    if(data.status == 0){
-                        return '';
-                    }else{
-                        return '<a class="button is-small is-primary lihat-detil-btn" data-id="'+data.id+'">'+
-                            '    <span class="icon is-small">'+
-                            '        <i class="fa fa-eye"></i>'+
-                            '    </span>'+
-                            '    <span>Lihat Berkas</span>'+
-                            '</a>';
-                    }
-                } 
             }
+            
         ]
-    });
-    
-    $(document).on('click', '.lihat-detil-btn', function(){
-        var item = $(this);
-        window.location.href = url+'/show-berkas/'+item.attr('data-id');
     });
 </script>
 @endpush

@@ -92,13 +92,6 @@ class DatalistController extends BaseController
                 ->editColumn('nama_lengkap', function($item){
                     return ucwords(strtolower($item->nama_lengkap));
                 })
-                ->addColumn('action', function($item){
-                    $data = array(
-                        'id' => $item->id_berkas_lamaran,
-                        'status' => $item->status
-                    );
-                    return $data;
-                })
                 ->setTotalRecords($total_records)
                 ->make(true);
     }
